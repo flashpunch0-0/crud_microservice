@@ -20,7 +20,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:Postgres%40@my_postgres_db:5432/job_db # ✅ Fixed encoding and DB name
 
@@ -43,7 +44,8 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - auth_postgres
+      auth_postgres:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://postgres:Postgres%40@my_auth_db:5432/auth_db # ✅ Fixed encoding and DB name
 
