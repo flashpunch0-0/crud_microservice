@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Postgres@71
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: job_db
     ports:
       - "5432:5432"
@@ -22,7 +22,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://postgres:Postgres@71@my_postgres_db:5432/job_db # ✅ Fixed encoding and DB name
+      DATABASE_URL: postgres://postgres:postgres@my_postgres_db:5432/job_db # ✅ Fixed encoding and DB name
 
 volumes:
   postgres_data:
