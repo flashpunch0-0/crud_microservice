@@ -1,33 +1,54 @@
-name: API Tests (SQLite)
+name: Multi Service Tests
 
 on:
   push:
-    branches: [main, dev]
+    branches:
+      - main
   pull_request:
-    branches: [main, dev]
+    branches:
+      - main
 
 jobs:
-  test-api:
+  test-auth-service:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: auth_service
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
-          cache-dependency-path: auth_service/package-lock.json
+          node-version: 18 # Adjust as needed
 
-      - name: Install dependencies (Auth Service)
-        working-directory: auth_service
+      - name: Install dependencies
         run: npm install
 
       - name: Set environment variables (SQLite Test)
         run: echo "NODE_ENV=test" >> $GITHUB_ENV
 
-      - name: Run API tests with SQLite
-        working-directory: auth_service
+      - name: Run tests
+        run: npm test
+
+  test-job-service:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: job_service
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+      - name: Set environment variables (SQLite Test)
+        run: echo "NODE_ENV=test" >> $GITHUB_ENV
+      - name: Run tests
         run: npm test
