@@ -49,6 +49,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Set environment variables (SQLite Test)
-        run: echo "NODE_ENV=test" >> $GITHUB_ENV
+        run: echo "NODE_ENV=test2" >> $GITHUB_ENV
       - name: Run tests
         run: npm test

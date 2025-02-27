@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 # Set the default command to start the application
-CMD ["node", "./job_service/server.js"]
+CMD ["node", "server.js"]
