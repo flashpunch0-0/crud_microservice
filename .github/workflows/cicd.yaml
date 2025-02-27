@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: .
+        working-directory: job_service
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
