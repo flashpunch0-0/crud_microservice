@@ -58,7 +58,7 @@ jobs:
     needs: [test-auth-service, test-job-service]
     steps:
       - name: Send notification to Discord
-        uses: Ilshidur/action-discord@v1
+        uses: discord-actions/message@v2
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           message: "✅ GitHub Action completed for ${{ github.repository }}!\n🔗 Check details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
